@@ -1,0 +1,112 @@
+<apex:page showHeader="false" standardStyleSheets="false" controller="JSONPlaceholderPjk">
+  <script src="https://kit.fontawesome.com/ac6654c576.js" crossorigin="anonymous"></script>
+  <apex:stylesheet value="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;300;400;500;600;700;900&display=swap"
+  />
+  <style>
+    body {
+      font-family: 'Fira Sans', sans-serif;
+      background: #1e1e1e;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      align-content: center;
+      padding: 50px 0;
+    }
+
+    .mainBlock .dataRow {
+      background: #222;
+    }
+
+    .mainBlock table {
+      margin: 0 auto;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .tableBlock tbody {
+      display: grid;
+      grid-template-columns: repeat( auto-fit, minmax(250px, 1fr));
+    }
+
+    .tableBlock tbody tr {
+      display: block;
+      margin: 5px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+      font-size: 14px;
+      padding: 20px;
+      transition: .3s;
+      color: #aaa;
+      position: relative;
+      z-index: 1;
+      /* top: 0; */
+    }
+
+    .tableBlock tbody tr td {
+      display: block;
+    }
+
+    .tableDataTitle {
+      font-size: 24px;
+      font-weight: 700;
+      text-transform: Capitalize;
+      margin: 10px 0;
+      color: #fff;
+    }
+
+    .singlePostBtn {
+      font-family: 'Fira Sans', sans-serif;
+      border-radius: 3px;
+      border: none;
+      padding: 10px 30px;
+      margin: 20px 0 0 0;
+      font-size: 14px;
+      font-weight: 500;
+      background: #444;
+      color: #777;
+      transition: .3s;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .singlePostBtn:hover {
+      background: #fff;
+      color: #000;
+      transition: .3s;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, .75);
+      cursor: pointer;
+    }
+
+    .singlePostBtn:before {
+      font-family: 'Font Awesome 5 Free';
+      content: '\f30a';
+      display: inline-block;
+      font-weight: 600;
+      padding-right: 3px;
+    }
+
+    img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+  </style>
+  <apex:pageBlock>
+    <div class="mainBlock">
+      <apex:pageBlockTable styleclass="tableBlock" value="{!SingleData}" var="data">
+        <apex:column>
+          <img src="{!$CurrentPage.parameters.postImgUrl}" alt="Image" />
+        </apex:column>
+        <apex:column value="{!SingleData[0].id}" />
+        <apex:column styleclass="tableDataTitle" value="{!SingleData[0].title}" />
+        <apex:column value="{!SingleData[0].body}" />
+        <apex:column>
+          <apex:form>
+            <apex:commandLink styleClass="singlePostBtn" value="Back" action="{!gotoPageSingle}" />
+          </apex:form>
+        </apex:column>
+      </apex:pageBlockTable>
+    </div>
+  </apex:pageBlock>
+</apex:page>
