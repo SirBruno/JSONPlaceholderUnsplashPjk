@@ -64,8 +64,7 @@ public class JSONPlaceholderUnsplashPjk {
             }
 
 			return dataMap;
-		} else
-			return null;
+		} else return null;
 	}
 
 	public String postId{ get; set; }
