@@ -1,0 +1,148 @@
+<apex:page showHeader="false" standardStyleSheets="false" controller="JSONPlaceholderPjk">
+    <apex:stylesheet value="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;300;400;500;600;700;900&display=swap"
+    />
+    <style>
+        body {
+            font-family: 'Fira Sans', sans-serif;
+            background: #1e1e1e;
+        }
+
+        .mainBlock .dataRow {
+            background: #222;
+        }
+
+        .tableBlock tbody {
+            display: grid;
+            grid-template-columns: repeat( auto-fit, minmax(250px, 1fr));
+        }
+
+        .tableBlock tbody tr {
+            display: block;
+            margin: 5px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+            font-size: 14px;
+            padding: 20px;
+            transition: .3s;
+            color: #aaa;
+            position: relative;
+            z-index: 1;
+            /* top: 0; */
+        }
+
+        .tableBlock tbody tr:hover {
+            box-shadow: 0 3px 20px rgba(0, 0, 0, .6);
+            transition: .3s;
+            cursor: pointer;
+            z-index: 0;
+            /* top: -5px; */
+        }
+
+        .tableBlock tbody tr td {
+            display: block;
+        }
+
+        .tableDataTitle {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: Capitalize;
+            margin: 10px 0;
+            color: #fff;
+        }
+
+        .singlePostBtn {
+            font-family: 'Fira Sans', sans-serif;
+            border-radius: 3px;
+            border: none;
+            padding: 10px 30px;
+            margin: 20px 0 0 0;
+            font-size: 14px;
+            font-weight: 500;
+            background: #444;
+            color: #777;
+            transition: .3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .singlePostBtn:hover {
+            background: #fff;
+            color: #000;
+            transition: .3s;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, .75);
+            cursor: pointer;
+        }
+
+        img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .paginationContainer {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .pageNumber {
+            box-shadow: 0 3px 10px rgba(0, 0, 0, .3);
+            width: 40px;
+            height: 40px;
+            border-radius: 3px;
+            margin: 3px;
+            text-decoration: none;
+            background: #444;
+            color: #777;
+            display: inline-grid;
+            align-items: center;
+            transition: .3s;
+        }
+
+        .pageNumber:hover {
+            transition: .3s;
+            background: #fff;
+            color: #000;
+        }
+    </style>
+
+    <head>
+        <title>JSONPlaceholderUnsplashPjk</title>
+    </head>
+    <apex:pageBlock>
+        <div class="mainBlock">
+            <apex:pageBlockTable id="tableBlock" styleClass="tableBlock" value="{!Data}" var="key">
+                <apex:column>
+                    <img src="{!Data[key].postImage}" alt="Image" />
+                </apex:column>
+                <apex:column value="{!Data[key].id}" />
+                <apex:column styleClass="tableDataTitle" value="{!Data[key].title}" />
+                <apex:column value="{!Data[key].body}" />
+                <apex:column>
+                    <apex:form>
+                        <apex:commandLink styleClass="singlePostBtn" value="View Post" action="{!gotoPage}">
+                            <apex:param name="postId" value="{!Data[key].id}" assignTo="{!postId}" />
+                            <apex:param name="postImgUrl" value="{!Data[key].postImage}" assignTo="{!postImgUrl}" />
+                        </apex:commandLink>
+                    </apex:form>
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:form styleclass="paginationContainer">
+                <apex:commandLink action="{!nextPage}" value="1" reRender="tableBlock" styleclass="pageNumber">
+                    <apex:param name="pageNumber" value="1" assignTo="{!pageNumber}" />
+                </apex:commandLink>
+                <apex:commandLink action="{!nextPage}" value="2" reRender="tableBlock" styleclass="pageNumber">
+                    <apex:param name="pageNumber" value="2" assignTo="{!pageNumber}" />
+                </apex:commandLink>
+                <apex:commandLink action="{!nextPage}" value="3" reRender="tableBlock" styleclass="pageNumber">
+                    <apex:param name="pageNumber" value="3" assignTo="{!pageNumber}" />
+                </apex:commandLink>
+                <apex:commandLink action="{!nextPage}" value="4" reRender="tableBlock" styleclass="pageNumber">
+                    <apex:param name="pageNumber" value="4" assignTo="{!pageNumber}" />
+                </apex:commandLink>
+                <apex:commandLink action="{!nextPage}" value="5" reRender="tableBlock" styleclass="pageNumber">
+                    <apex:param name="pageNumber" value="5" assignTo="{!pageNumber}" />
+                </apex:commandLink>
+            </apex:form>
+        </div>
+    </apex:pageBlock>
+</apex:page>
