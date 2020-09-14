@@ -9,9 +9,9 @@ public class JSONPlaceholderUnsplashPjk {
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         if (Apexpages.currentPage().getParameters().get('pageNumber') == NULL) {
-            request.setEndpoint('https://api.unsplash.com/photos?client_id=59I_rlGU2KQHyoJy6R1_K6gfjiNpuXq8y7uz8UEUbRk&page=1');
+            request.setEndpoint('https://api.unsplash.com/photos?client_id=ACCESS_KEY&page=1');
         } else {
-            request.setEndpoint('https://api.unsplash.com/photos?client_id=59I_rlGU2KQHyoJy6R1_K6gfjiNpuXq8y7uz8UEUbRk&page='+Apexpages.currentPage().getParameters().get('pageNumber'));
+            request.setEndpoint('https://api.unsplash.com/photos?client_id=ACCESS_KEY&page='+Apexpages.currentPage().getParameters().get('pageNumber'));
         }
         request.setMethod('GET');
         HttpResponse response = http.send(request);
